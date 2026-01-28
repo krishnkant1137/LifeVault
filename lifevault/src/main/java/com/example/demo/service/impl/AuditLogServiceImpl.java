@@ -28,7 +28,7 @@ public class AuditLogServiceImpl implements AuditLogService {
                 .orElseThrow(() -> new RuntimeException("User not found for audit log"));
 
         AuditLog log = new AuditLog();
-        log.setUser(owner);               // ✅ LINK TO USER
+        log.setUser(owner);            
         log.setAction(action);
         	
         auditLogRepository.save(log);

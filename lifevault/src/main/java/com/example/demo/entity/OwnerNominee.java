@@ -10,12 +10,10 @@ public class OwnerNominee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 Many mappings to User (Owner)
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    // 🔹 Many mappings to Nominee
     @ManyToOne
     @JoinColumn(name = "nominee_id", nullable = false)
     private Nominee nominee;
@@ -23,10 +21,8 @@ public class OwnerNominee {
     @Column(length = 50)
     private String relationship;
 
-    // 🔹 Default constructor
     public OwnerNominee() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }

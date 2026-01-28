@@ -11,7 +11,6 @@ public class VaultFolder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 Many folders belong to one owner
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
@@ -25,10 +24,8 @@ public class VaultFolder {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA)
     public VaultFolder() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }

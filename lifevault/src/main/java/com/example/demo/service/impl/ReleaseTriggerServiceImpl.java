@@ -69,7 +69,6 @@ public class ReleaseTriggerServiceImpl implements ReleaseTriggerService {
             }
         }
 
-        // ✅ AUDIT LOG ONLY IF RELEASE HAPPENED
         if (released) {
             auditLogService.logSystemAction(
                     ownerId,

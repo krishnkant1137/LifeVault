@@ -10,5 +10,7 @@ public interface OwnerNomineeRepository extends JpaRepository<OwnerNominee, Long
 
     List<OwnerNominee> findByOwnerId(Long ownerId);
     List<OwnerNominee> findByNomineeId(Long nomineeId);
+    boolean existsByOwnerIdAndNomineeId(Long ownerId, Long nomineeId);
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dto.NomineeFolderDTO;
 import com.example.demo.entity.Nominee;
 import com.example.demo.repository.NomineeRepository;
 import com.example.demo.service.NomineeService;
@@ -29,4 +30,9 @@ public class NomineeServiceImpl implements NomineeService {
     public List<Nominee> getAllNominees() {
         return nomineeRepository.findAll();
     }
+    
+
+
+
+    
 }

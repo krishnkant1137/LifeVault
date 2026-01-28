@@ -33,10 +33,8 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA needs it)
     public User() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }

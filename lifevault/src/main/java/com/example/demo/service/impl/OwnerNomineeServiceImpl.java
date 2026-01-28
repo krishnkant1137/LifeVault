@@ -29,10 +29,18 @@ public class OwnerNomineeServiceImpl implements OwnerNomineeService {
     @Override
     public OwnerNominee assignNominee(Long ownerId, Long nomineeId, String relationship) {
 
+        if (ownerNomineeRepository
+                .existsByOwnerIdAndNomineeId(ownerId, nomineeId)) {
+            throw new IllegalStateException("Nominee already assigned to this owner");
+        }
+
+    	
         User owner = userRepository.findById(ownerId)
         		 .orElseThrow(() -> new ResourceNotFoundException("Owner not found"));
         Nominee nominee = nomineeRepository.findById(nomineeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Nominee not found"));
+        
+
 
         OwnerNominee mapping = new OwnerNominee();
         mapping.setOwner(owner);
