@@ -5,6 +5,7 @@ import com.example.demo.entity.OwnerNominee;
 import com.example.demo.entity.VaultFolder;
 import com.example.demo.repository.OwnerNomineeRepository;
 import com.example.demo.repository.VaultFolderRepository;
+import com.example.demo.service.AuditLogService;
 import com.example.demo.service.NomineeDashboardService;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,16 @@ public class NomineeDashboardServiceImpl implements NomineeDashboardService {
 
     private final OwnerNomineeRepository ownerNomineeRepository;
     private final VaultFolderRepository vaultFolderRepository;
+    private final AuditLogService auditLogService;
 
     public NomineeDashboardServiceImpl(
             OwnerNomineeRepository ownerNomineeRepository,
-            VaultFolderRepository vaultFolderRepository
+            VaultFolderRepository vaultFolderRepository,
+            AuditLogService auditLogService
     ) {
         this.ownerNomineeRepository = ownerNomineeRepository;
         this.vaultFolderRepository = vaultFolderRepository;
+        this.auditLogService = auditLogService;
     }
 
     @Override
@@ -47,6 +51,16 @@ public class NomineeDashboardServiceImpl implements NomineeDashboardService {
                 ));
             }
         }
+        
+        if (!response.isEmpty()) {
+            Long ownerId = mappings.get(0).getOwner().getId();
+
+            auditLogService.logSystemAction(
+                    ownerId,
+                    "Nominee viewed released folders"
+            );
+        }
+
 
         return response;
     }
