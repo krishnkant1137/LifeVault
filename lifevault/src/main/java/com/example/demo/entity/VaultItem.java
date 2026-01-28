@@ -11,7 +11,6 @@ public class VaultItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 Many items belong to one folder
     @ManyToOne
     @JoinColumn(name = "folder_id", nullable = false)
     private VaultFolder folder;
@@ -28,10 +27,8 @@ public class VaultItem {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA)
     public VaultItem() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }

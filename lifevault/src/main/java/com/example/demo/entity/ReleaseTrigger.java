@@ -11,7 +11,6 @@ public class ReleaseTrigger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 One trigger belongs to one owner
     @OneToOne
     @JoinColumn(name = "owner_id", nullable = false, unique = true)
     private User owner;
@@ -22,10 +21,8 @@ public class ReleaseTrigger {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA)
     public ReleaseTrigger() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }

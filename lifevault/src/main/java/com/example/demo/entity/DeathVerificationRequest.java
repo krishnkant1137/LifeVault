@@ -11,16 +11,17 @@ public class DeathVerificationRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 Many requests by one nominee
     @ManyToOne
     @JoinColumn(name = "nominee_id", nullable = false)
     private Nominee nominee;
 
-    // 🔹 Many requests for one owner
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
+    @Column(length = 255)
+    private String note;
+    
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private VerificationStatus status = VerificationStatus.PENDING;
@@ -28,10 +29,8 @@ public class DeathVerificationRequest {
     @Column(name = "requested_at")
     private LocalDateTime requestedAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA)
     public DeathVerificationRequest() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }
@@ -58,6 +57,14 @@ public class DeathVerificationRequest {
 
     public void setStatus(VerificationStatus status) {
         this.status = status;
+    }
+    
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public LocalDateTime getRequestedAt() {

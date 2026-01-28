@@ -27,14 +27,12 @@ public class OwnerDashboardServiceImpl implements OwnerDashboardService {
     @Override
     public OwnerDashboardResponseDTO getDashboard(Long ownerId) {
 
-        // folders
         List<VaultFolderResponseDTO> folders =
                 folderRepository.findByOwnerId(ownerId)
                         .stream()
                         .map(VaultFolderMapper::toDto)
                         .collect(Collectors.toList());
 
-        // nominees
         List<OwnerNomineeDTO> nominees =
                 ownerNomineeRepository.findByOwnerId(ownerId)
                         .stream()

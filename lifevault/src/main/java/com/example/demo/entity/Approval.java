@@ -11,12 +11,10 @@ public class Approval {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 One approval for one verification request
     @OneToOne
     @JoinColumn(name = "request_id", nullable = false, unique = true)
     private DeathVerificationRequest request;
 
-    // 🔹 Many approvals done by one admin
     @ManyToOne
     @JoinColumn(name = "admin_id", nullable = false)
     private User admin;
@@ -31,10 +29,8 @@ public class Approval {
     @Column(name = "decided_at")
     private LocalDateTime decidedAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA)
     public Approval() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }

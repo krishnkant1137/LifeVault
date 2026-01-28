@@ -13,7 +13,6 @@ public class InactivityScheduler {
         this.releaseTriggerService = releaseTriggerService;
     }
 
-    // Runs once daily at 2 AM
     @Scheduled(cron = "0 * * * * ?")
     public void runInactivityCheck() {
         releaseTriggerService.checkAndReleaseVaults();

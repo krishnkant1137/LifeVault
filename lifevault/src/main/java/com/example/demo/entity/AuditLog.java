@@ -11,7 +11,6 @@ public class AuditLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 Many logs belong to one user
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -22,10 +21,8 @@ public class AuditLog {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // 🔹 Default constructor (JPA)
     public AuditLog() {}
 
-    // 🔹 Getters & Setters
     public Long getId() {
         return id;
     }
