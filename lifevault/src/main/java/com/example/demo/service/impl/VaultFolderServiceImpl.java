@@ -6,6 +6,8 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.VaultFolderRepository;
 import com.example.demo.service.VaultFolderService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class VaultFolderServiceImpl implements VaultFolderService {
         this.userRepository = userRepository;
     }
 
+    @PreAuthorize("hasRole('OWNER')")
     @Override
     public VaultFolder createFolder(Long ownerId, String folderName) {
 

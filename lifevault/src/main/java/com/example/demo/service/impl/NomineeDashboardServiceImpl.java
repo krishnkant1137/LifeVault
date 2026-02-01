@@ -7,6 +7,8 @@ import com.example.demo.repository.OwnerNomineeRepository;
 import com.example.demo.repository.VaultFolderRepository;
 import com.example.demo.service.AuditLogService;
 import com.example.demo.service.NomineeDashboardService;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class NomineeDashboardServiceImpl implements NomineeDashboardService {
         this.auditLogService = auditLogService;
     }
 
+    @PreAuthorize("hasRole('NOMINEE')")
     @Override
     public List<NomineeFolderDTO> getReleasedFolders(Long nomineeId) {
 
